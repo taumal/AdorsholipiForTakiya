@@ -95,7 +95,7 @@ public class NumberViewer {
         buttonPane.setAlignment(Pos.CENTER);
         buttonPane.setPadding(new Insets(10));
 
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 20; i++) {
             String number = String.valueOf(i);
             Button btn = new Button(number);
             btn.setPrefWidth(80); // Increased width
@@ -176,6 +176,16 @@ public class NumberViewer {
         map.put("8", new NumberItem("8", "Eight", "src/main/resources/images/8.jpg", "src/main/resources/sounds/8.mp3"));
         map.put("9", new NumberItem("9", "Nine", "src/main/resources/images/9.jpg", "src/main/resources/sounds/9.mp3"));
         map.put("10", new NumberItem("10", "Ten", "src/main/resources/images/10.jpg", "src/main/resources/sounds/10.mp3"));
+        map.put("11", new NumberItem("11", "Eleven", "src/main/resources/images/11.jpg", "src/main/resources/sounds/11.mp3"));
+        map.put("12", new NumberItem("12", "Twelve", "src/main/resources/images/12.jpg", "src/main/resources/sounds/12.mp3"));
+        map.put("13", new NumberItem("13", "Thirteen", "src/main/resources/images/13.jpg", "src/main/resources/sounds/13.mp3"));
+        map.put("14", new NumberItem("14", "Fourteen", "src/main/resources/images/14.jpg", "src/main/resources/sounds/14.mp3"));
+        map.put("15", new NumberItem("15", "Fifteen", "src/main/resources/images/15.jpg", "src/main/resources/sounds/15.mp3"));
+        map.put("16", new NumberItem("16", "Sixteen", "src/main/resources/images/16.jpg", "src/main/resources/sounds/16.mp3"));
+        map.put("17", new NumberItem("17", "Seventeen", "src/main/resources/images/17.jpg", "src/main/resources/sounds/17.mp3"));
+        map.put("18", new NumberItem("18", "Eighteen", "src/main/resources/images/18.jpg", "src/main/resources/sounds/18.mp3"));
+        map.put("19", new NumberItem("19", "Nineteen", "src/main/resources/images/19.jpg", "src/main/resources/sounds/19.mp3"));
+        map.put("20", new NumberItem("20", "Twenty", "src/main/resources/images/20.jpg", "src/main/resources/sounds/20.mp3"));
         return map;
     }
 
