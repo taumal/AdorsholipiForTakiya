@@ -34,16 +34,16 @@ public class NumberViewer {
 
     private final Map<String, NumberItem> numberMap;
 
-    public NumberViewer() {
+    public NumberViewer(Runnable onBack) {
         root = new BorderPane();
         root.setPadding(new Insets(20));
 
         Button backButton = new Button("Back");
         backButton.setOnAction(e -> {
-            // No longer calling Main.showMainMenu(), instead rely on MainViewController to clear content
             if (root.getParent() instanceof StackPane) {
                 ((StackPane) root.getParent()).getChildren().clear();
             }
+            onBack.run();
         });
         backButton.setStyle(
                 "-fx-background-color: #f44336; " +
