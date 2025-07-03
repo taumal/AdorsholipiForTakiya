@@ -16,7 +16,7 @@ public class Main {
         primaryStage = stage;
         primaryStage.setTitle("Adorsholipi for Takiya");
         showMainMenu();
-        primaryStage.setFullScreen(true);
+        primaryStage.setMaximized(true);
         primaryStage.show();
     }
 
@@ -25,7 +25,7 @@ public class Main {
         Parent root = fxmlLoader.load();
         mainScene = new Scene(root, 1024, 576);
         primaryStage.setScene(mainScene);
-        primaryStage.setFullScreen(true);
+        primaryStage.setMaximized(true);
     }
 
     public static Scene getScene() {

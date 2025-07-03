@@ -37,7 +37,7 @@ public class NumberViewer {
         root = new BorderPane();
         root.setPadding(new Insets(20));
 
-        Button backButton = new Button("<- Back");
+        Button backButton = new Button("Back");
         backButton.setOnAction(e -> {
             try {
                 Main.showMainMenu();
@@ -64,7 +64,7 @@ public class NumberViewer {
         numberDisplay = new Text("1");
         numberDisplay.setFont(Font.font("Arial", 350));
 
-        descriptionDisplay = new Text("1 for One");
+        descriptionDisplay = new Text("One");
         descriptionDisplay.setFont(Font.font("Arial", 34));
 
         imageView = new ImageView();
@@ -166,16 +166,16 @@ public class NumberViewer {
 
     private Map<String, NumberItem> loadNumberItems() {
         Map<String, NumberItem> map = new HashMap<>();
-        map.put("1", new NumberItem("1", "1 for One", "src/main/resources/images/1.jpg", "src/main/resources/sounds/1.mp3"));
-        map.put("2", new NumberItem("2", "2 for Two", "src/main/resources/images/2.jpg", "src/main/resources/sounds/2.mp3"));
-        map.put("3", new NumberItem("3", "3 for Three", "src/main/resources/images/3.jpg", "src/main/resources/sounds/3.mp3"));
-        map.put("4", new NumberItem("4", "4 for Four", "src/main/resources/images/4.jpg", "src/main/resources/sounds/4.mp3"));
-        map.put("5", new NumberItem("5", "5 for Five", "src/main/resources/images/5.jpg", "src/main/resources/sounds/5.mp3"));
-        map.put("6", new NumberItem("6", "6 for Six", "src/main/resources/images/6.jpg", "src/main/resources/sounds/6.mp3"));
-        map.put("7", new NumberItem("7", "7 for Seven", "src/main/resources/images/7.jpg", "src/main/resources/sounds/7.mp3"));
-        map.put("8", new NumberItem("8", "8 for Eight", "src/main/resources/images/8.jpg", "src/main/resources/sounds/8.mp3"));
-        map.put("9", new NumberItem("9", "9 for Nine", "src/main/resources/images/9.jpg", "src/main/resources/sounds/9.mp3"));
-        map.put("10", new NumberItem("10", "10 for Ten", "src/main/resources/images/10.jpg", "src/main/resources/sounds/10.mp3"));
+        map.put("1", new NumberItem("1", "One", "src/main/resources/images/1.jpg", "src/main/resources/sounds/1.mp3"));
+        map.put("2", new NumberItem("2", "Two", "src/main/resources/images/2.jpg", "src/main/resources/sounds/2.mp3"));
+        map.put("3", new NumberItem("3", "Three", "src/main/resources/images/3.jpg", "src/main/resources/sounds/3.mp3"));
+        map.put("4", new NumberItem("4", "Four", "src/main/resources/images/4.jpg", "src/main/resources/sounds/4.mp3"));
+        map.put("5", new NumberItem("5", "Five", "src/main/resources/images/5.jpg", "src/main/resources/sounds/5.mp3"));
+        map.put("6", new NumberItem("6", "Six", "src/main/resources/images/6.jpg", "src/main/resources/sounds/6.mp3"));
+        map.put("7", new NumberItem("7", "Seven", "src/main/resources/images/7.jpg", "src/main/resources/sounds/7.mp3"));
+        map.put("8", new NumberItem("8", "Eight", "src/main/resources/images/8.jpg", "src/main/resources/sounds/8.mp3"));
+        map.put("9", new NumberItem("9", "Nine", "src/main/resources/images/9.jpg", "src/main/resources/sounds/9.mp3"));
+        map.put("10", new NumberItem("10", "Ten", "src/main/resources/images/10.jpg", "src/main/resources/sounds/10.mp3"));
         return map;
     }
 

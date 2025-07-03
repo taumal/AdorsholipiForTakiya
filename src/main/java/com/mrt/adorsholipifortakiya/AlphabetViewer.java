@@ -37,7 +37,7 @@ public class AlphabetViewer {
         root = new BorderPane();
         root.setPadding(new Insets(20));
 
-        Button backButton = new Button("<- Back");
+        Button backButton = new Button("Back");
         backButton.setOnAction(e -> {
             try {
                 Main.showMainMenu();

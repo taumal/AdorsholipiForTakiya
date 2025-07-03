@@ -13,7 +13,7 @@ public class MainViewController {
     private void handleAlphabetButtonAction() {
         Stage stage = (Stage) Main.getScene().getWindow();
         AlphabetViewer viewer = new AlphabetViewer();
-        Scene scene = new Scene(viewer.getView(), 1160, 1080);
+        Scene scene = new Scene(viewer.getView());
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
@@ -32,14 +32,14 @@ public class MainViewController {
         });
 
         stage.setScene(scene);
-        stage.setFullScreen(true);
+        stage.setMaximized(true);
     }
 
     @FXML
     private void handleNumberButtonAction() {
         Stage stage = (Stage) Main.getScene().getWindow();
         NumberViewer viewer = new NumberViewer();
-        Scene scene = new Scene(viewer.getView(), 1160, 1080);
+        Scene scene = new Scene(viewer.getView());
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
@@ -57,6 +57,11 @@ public class MainViewController {
         });
 
         stage.setScene(scene);
-        stage.setFullScreen(true);
+        stage.setMaximized(true);
+    }
+
+    @FXML
+    private void handleExitButtonAction() {
+        System.exit(0);
     }
 }
