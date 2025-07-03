@@ -1,27 +1,24 @@
 package com.mrt.adorsholipifortakiya;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.scene.input.KeyCode;
-import javafx.stage.Stage;
-
-import java.io.IOException;
+import javafx.application.Platform;
 
 public class MainViewController {
 
     @FXML
-    private void handleAlphabetButtonAction() {
-        Stage stage = (Stage) Main.getScene().getWindow();
-        AlphabetViewer viewer = new AlphabetViewer();
-        Scene scene = new Scene(viewer.getView());
+    private StackPane contentPane;
 
-        scene.setOnKeyPressed(event -> {
+    @FXML
+    private void handleAlphabetButtonAction() {
+        AlphabetViewer viewer = new AlphabetViewer();
+        contentPane.getChildren().setAll(viewer.getView());
+
+        contentPane.getScene().setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
-                try {
-                    Main.showMainMenu();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                contentPane.getChildren().clear(); // Clear the viewer when escaping
+                contentPane.getScene().setOnKeyPressed(null); // Remove key handler
                 return;
             }
 
@@ -30,24 +27,17 @@ public class MainViewController {
                 viewer.showLetter(keyName);
             }
         });
-
-        stage.setScene(scene);
-        stage.setMaximized(true);
     }
 
     @FXML
     private void handleNumberButtonAction() {
-        Stage stage = (Stage) Main.getScene().getWindow();
         NumberViewer viewer = new NumberViewer();
-        Scene scene = new Scene(viewer.getView());
+        contentPane.getChildren().setAll(viewer.getView());
 
-        scene.setOnKeyPressed(event -> {
+        contentPane.getScene().setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
-                try {
-                    Main.showMainMenu();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                contentPane.getChildren().clear(); // Clear the viewer when escaping
+                contentPane.getScene().setOnKeyPressed(null); // Remove key handler
                 return;
             }
 
@@ -55,13 +45,10 @@ public class MainViewController {
                 viewer.showNumber(event.getText());
             }
         });
-
-        stage.setScene(scene);
-        stage.setMaximized(true);
     }
 
     @FXML
     private void handleExitButtonAction() {
-        System.exit(0);
+        Platform.exit();
     }
 }

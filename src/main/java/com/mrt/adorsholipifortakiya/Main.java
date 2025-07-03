@@ -15,17 +15,12 @@ public class Main {
     public static void start(Stage stage) throws IOException {
         primaryStage = stage;
         primaryStage.setTitle("Adorsholipi for Takiya");
-        showMainMenu();
-        primaryStage.setMaximized(true);
-        primaryStage.show();
-    }
-
-    public static void showMainMenu() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
         Parent root = fxmlLoader.load();
-        mainScene = new Scene(root, 1024, 576);
+        mainScene = new Scene(root);
         primaryStage.setScene(mainScene);
         primaryStage.setMaximized(true);
+        primaryStage.show();
     }
 
     public static Scene getScene() {

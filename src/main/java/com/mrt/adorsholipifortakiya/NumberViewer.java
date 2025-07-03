@@ -14,6 +14,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
@@ -39,10 +40,9 @@ public class NumberViewer {
 
         Button backButton = new Button("Back");
         backButton.setOnAction(e -> {
-            try {
-                Main.showMainMenu();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            // No longer calling Main.showMainMenu(), instead rely on MainViewController to clear content
+            if (root.getParent() instanceof StackPane) {
+                ((StackPane) root.getParent()).getChildren().clear();
             }
         });
         backButton.setStyle(
