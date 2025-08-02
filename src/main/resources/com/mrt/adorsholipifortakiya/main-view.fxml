@@ -13,10 +13,10 @@
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
             </padding>
-            <Button text="Alphabets" onAction="#handleAlphabetButtonAction"
+            <Button text="A B C D..." onAction="#handleAlphabetButtonAction"
                     prefWidth="200" prefHeight="80"
                     style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: hand;"/>
-            <Button text="Numbers" onAction="#handleNumberButtonAction"
+            <Button text="1 2 3..." onAction="#handleNumberButtonAction"
                     prefWidth="200" prefHeight="80"
                     style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: hand;"/>
             <Button text="Exit" onAction="#handleExitButtonAction"

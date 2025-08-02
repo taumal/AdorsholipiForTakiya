@@ -192,7 +192,7 @@ public class AlphabetViewer {
         map.put("V", new AlphabetItem("V", "V for Vase", "src/main/resources/images/V.png", "src/main/resources/sounds/v.mp3"));
         map.put("W", new AlphabetItem("W", "W for Watermelon", "src/main/resources/images/W.png", "src/main/resources/sounds/w.mp3"));
         map.put("X", new AlphabetItem("X", "X for Xylophone", "src/main/resources/images/X.png", "src/main/resources/sounds/x.mp3"));
-        map.put("Y", new AlphabetItem("Y", "Y for Yak", "src/main/resources/images/Y.png", "src/main/resources/sounds/y.mp3"));
+        map.put("Y", new AlphabetItem("Y", "Y for Yolk", "src/main/resources/images/Y.png", "src/main/resources/sounds/y.mp3"));
         map.put("Z", new AlphabetItem("Z", "Z for Zebra", "src/main/resources/images/Z.png", "src/main/resources/sounds/z.mp3"));
 
         return map;
