@@ -19,6 +19,9 @@
             <Button text="1 2 3..." onAction="#handleNumberButtonAction"
                     prefWidth="200" prefHeight="80"
                     style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: hand;"/>
+            <Button text="অ আ ই..." onAction="#handleBanglaVowelButtonAction"
+                    prefWidth="200" prefHeight="80"
+                    style="-fx-background-color: #6c36f4; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: hand;"/>
             <Button text="Exit" onAction="#handleExitButtonAction"
                     prefWidth="200" prefHeight="80"
                     style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: hand;"/>

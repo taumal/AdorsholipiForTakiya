@@ -1,6 +1,6 @@
 package com.mrt.adorsholipifortakiya;
 
-import com.mrt.adorsholipifortakiya.model.NumberItem;
+import com.mrt.adorsholipifortakiya.model.AlphabetItem;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
@@ -9,12 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
@@ -22,19 +17,31 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.File;
-import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
-public class NumberViewer {
+public class BengaliVowelViewer {
     private final BorderPane root;
-    private final Text numberDisplay;
+    private final Text letterDisplay;
     private final Text descriptionDisplay;
     private final ImageView imageView;
 
-    private final Map<String, NumberItem> numberMap;
+    private final Map<String, AlphabetItem> alphabetMap;
 
-    public NumberViewer(Runnable onBack) {
+    public BengaliVowelViewer(Runnable onBack) {
+        Font banglaFont = null;
+        try {
+            banglaFont = Font.loadFont(new FileInputStream("src/main/resources/fonts/kalpurush.ttf"), 100);
+        } catch (FileNotFoundException e) {
+            System.out.println("Font not found. Using default.");
+            banglaFont = Font.font("Arial", 100);
+        }
+
+
         root = new BorderPane();
         root.setPadding(new Insets(20));
 
@@ -61,11 +68,12 @@ public class NumberViewer {
         topBar.setPadding(new Insets(0, 0, 20, 0));
         root.setTop(topBar);
 
-        numberDisplay = new Text("1");
-        numberDisplay.setFont(Font.font("Arial", 350));
 
-        descriptionDisplay = new Text("One");
-        descriptionDisplay.setFont(Font.font("Arial", 34));
+        letterDisplay = new Text("অ");
+        letterDisplay.setFont(Font.font(banglaFont.getFamily(), 350));
+
+        descriptionDisplay = new Text("অ -তে অলি");
+        descriptionDisplay.setFont(Font.font(banglaFont.getFamily(), 34));
 
         imageView = new ImageView();
         imageView.setFitHeight(300);
@@ -74,33 +82,32 @@ public class NumberViewer {
         VBox imageAndDescriptionBox = new VBox(10, imageView, descriptionDisplay);
         imageAndDescriptionBox.setAlignment(Pos.CENTER);
 
-        HBox centerBox = new HBox(50, numberDisplay, imageAndDescriptionBox);
+        HBox centerBox = new HBox(50, letterDisplay, imageAndDescriptionBox);
         centerBox.setAlignment(Pos.CENTER);
         root.setCenter(centerBox);
 
-        numberMap = loadNumberItems();
-        showNumber("1");  // Show default
+        alphabetMap = loadAlphabetItems();
+        showLetter("A");  // Show default
 
-        root.setBottom(createNumberButtons());
+        root.setBottom(createAlphabetButtons());
     }
 
     public Pane getView() {
         return root;
     }
 
-    private FlowPane createNumberButtons() {
+    private FlowPane createAlphabetButtons() {
         FlowPane buttonPane = new FlowPane();
         buttonPane.setHgap(10);
         buttonPane.setVgap(10);
         buttonPane.setAlignment(Pos.CENTER);
         buttonPane.setPadding(new Insets(10));
 
-        for (int i = 1; i <= 20; i++) {
-            String number = String.valueOf(i);
-            Button btn = new Button(number);
+        for (String letter : loadAlphabetItems().keySet()) {
+            Button btn = new Button(letter);
             btn.setPrefWidth(80); // Increased width
             btn.setStyle(
-                "-fx-background-color: #2196F3; " +
+                "-fx-background-color: #6c36f4; " +
                 "-fx-text-fill: white; " +
                 "-fx-font-size: 20px; " + // Increased font size
                 "-fx-font-weight: bold; " +
@@ -112,7 +119,7 @@ public class NumberViewer {
 
             // Hover effect
             btn.setOnMouseEntered(e -> btn.setStyle(
-                "-fx-background-color: #2196F3; " +
+                "-fx-background-color: #6c36f4; " +
                 "-fx-text-fill: white; " +
                 "-fx-font-size: 20px; " +
                 "-fx-font-weight: bold; " +
@@ -122,7 +129,7 @@ public class NumberViewer {
                 "-fx-cursor: hand;"
             ));
             btn.setOnMouseExited(e -> btn.setStyle(
-                "-fx-background-color: #2196F3; " +
+                "-fx-background-color: #6c36f4; " +
                 "-fx-text-fill: white; " +
                 "-fx-font-size: 20px; " +
                 "-fx-font-weight: bold; " +
@@ -132,18 +139,18 @@ public class NumberViewer {
                 "-fx-cursor: hand;"
             ));
 
-            btn.setOnAction(e -> showNumber(number));
+            btn.setOnAction(e -> showLetter(letter));
             buttonPane.getChildren().add(btn);
         }
 
         return buttonPane;
     }
 
-    public void showNumber(String number) {
-        NumberItem item = numberMap.get(number);
+    public void showLetter(String letter) {
+        AlphabetItem item = alphabetMap.get(letter);
         if (item == null) return;
 
-        numberDisplay.setText(item.getNumber());
+        letterDisplay.setText(item.getLetter());
         descriptionDisplay.setText(item.getDescription());
 
         // Load Image
@@ -164,34 +171,25 @@ public class NumberViewer {
         playAnimations();
     }
 
-    private Map<String, NumberItem> loadNumberItems() {
-        Map<String, NumberItem> map = new HashMap<>();
-        map.put("1", new NumberItem("1", "One", "src/main/resources/images/1.jpg", "src/main/resources/sounds/1.mp3"));
-        map.put("2", new NumberItem("2", "Two", "src/main/resources/images/2.jpg", "src/main/resources/sounds/2.mp3"));
-        map.put("3", new NumberItem("3", "Three", "src/main/resources/images/3.jpg", "src/main/resources/sounds/3.mp3"));
-        map.put("4", new NumberItem("4", "Four", "src/main/resources/images/4.jpg", "src/main/resources/sounds/4.mp3"));
-        map.put("5", new NumberItem("5", "Five", "src/main/resources/images/5.jpg", "src/main/resources/sounds/5.mp3"));
-        map.put("6", new NumberItem("6", "Six", "src/main/resources/images/6.jpg", "src/main/resources/sounds/6.mp3"));
-        map.put("7", new NumberItem("7", "Seven", "src/main/resources/images/7.jpg", "src/main/resources/sounds/7.mp3"));
-        map.put("8", new NumberItem("8", "Eight", "src/main/resources/images/8.jpg", "src/main/resources/sounds/8.mp3"));
-        map.put("9", new NumberItem("9", "Nine", "src/main/resources/images/9.jpg", "src/main/resources/sounds/9.mp3"));
-        map.put("10", new NumberItem("10", "Ten", "src/main/resources/images/10.jpg", "src/main/resources/sounds/10.mp3"));
-        map.put("11", new NumberItem("11", "Eleven", "src/main/resources/images/11.jpg", "src/main/resources/sounds/11.mp3"));
-        map.put("12", new NumberItem("12", "Twelve", "src/main/resources/images/12.jpg", "src/main/resources/sounds/12.mp3"));
-        map.put("13", new NumberItem("13", "Thirteen", "src/main/resources/images/13.jpg", "src/main/resources/sounds/13.mp3"));
-        map.put("14", new NumberItem("14", "Fourteen", "src/main/resources/images/14.jpg", "src/main/resources/sounds/14.mp3"));
-        map.put("15", new NumberItem("15", "Fifteen", "src/main/resources/images/15.jpg", "src/main/resources/sounds/15.mp3"));
-        map.put("16", new NumberItem("16", "Sixteen", "src/main/resources/images/16.jpg", "src/main/resources/sounds/16.mp3"));
-        map.put("17", new NumberItem("17", "Seventeen", "src/main/resources/images/17.jpg", "src/main/resources/sounds/17.mp3"));
-        map.put("18", new NumberItem("18", "Eighteen", "src/main/resources/images/18.jpg", "src/main/resources/sounds/18.mp3"));
-        map.put("19", new NumberItem("19", "Nineteen", "src/main/resources/images/19.jpg", "src/main/resources/sounds/19.mp3"));
-        map.put("20", new NumberItem("20", "Twenty", "src/main/resources/images/20.jpg", "src/main/resources/sounds/20.mp3"));
+    private Map<String, AlphabetItem> loadAlphabetItems() {
+        Map<String, AlphabetItem> map = new TreeMap<>(Comparator.naturalOrder());
+
+        map.put("অ", new AlphabetItem("অ", "অ -তে ", "src/main/resources/images/অ.png", "src/main/resources/sounds/অ.mp3"));
+        map.put("আ", new AlphabetItem("আ", "আ -তে ", "src/main/resources/images/আ.png", "src/main/resources/sounds/আ.mp3"));
+        map.put("ই", new AlphabetItem("ই", "ই -তে ", "src/main/resources/images/ই.png", "src/main/resources/sounds/ই.mp3"));
+        map.put("ঈ", new AlphabetItem("ঈ", "ঈ -তে ", "src/main/resources/images/ঈ.png", "src/main/resources/sounds/ঈ.mp3"));
+        map.put("ঋ", new AlphabetItem("ঋ", "ঋ -তে ", "src/main/resources/images/ঋ.png", "src/main/resources/sounds/ঋ.mp3"));
+        map.put("এ", new AlphabetItem("এ", "এ -তে ", "src/main/resources/images/এ.png", "src/main/resources/sounds/এ.mp3"));
+        map.put("ঐ", new AlphabetItem("ঐ", "ঐ -তে ", "src/main/resources/images/ঐ.png", "src/main/resources/sounds/ঐ.mp3"));
+        map.put("ও", new AlphabetItem("ও", "ও -তে ", "src/main/resources/images/ও.png", "src/main/resources/sounds/ও.mp3"));
+        map.put("ঔ", new AlphabetItem("ঔ", "ঔ -তে ", "src/main/resources/images/ঔ.png", "src/main/resources/sounds/ঔ.mp3"));
+
         return map;
     }
 
     private void playAnimations() {
-        // Scale animation for the big number
-        ScaleTransition scale = new ScaleTransition(Duration.millis(300), numberDisplay);
+        // Scale animation for the big letter
+        ScaleTransition scale = new ScaleTransition(Duration.millis(300), letterDisplay);
         scale.setFromX(0.5);
         scale.setFromY(0.5);
         scale.setToX(1.0);
@@ -212,4 +210,5 @@ public class NumberViewer {
         fade.play();
         slide.play();
     }
+
 }

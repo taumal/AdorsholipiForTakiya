@@ -68,6 +68,32 @@ public class MainViewController {
     }
 
     @FXML
+    private void handleBanglaVowelButtonAction() {
+        buttonContainer.setVisible(false);
+        buttonContainer.setManaged(false);
+
+        BengaliVowelViewer viewer = new BengaliVowelViewer(() -> {
+            buttonContainer.setVisible(true);
+            buttonContainer.setManaged(true);
+        });
+        contentPane.getChildren().setAll(viewer.getView());
+
+        contentPane.getScene().setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                contentPane.getChildren().clear(); // Clear the viewer when escaping
+                contentPane.getScene().setOnKeyPressed(null); // Remove key handler
+                buttonContainer.setVisible(true);
+                buttonContainer.setManaged(true);
+                return;
+            }
+
+            if (event.getCode().isDigitKey()) {
+                viewer.showLetter(event.getText());
+            }
+        });
+    }
+
+    @FXML
     private void handleExitButtonAction() {
         Platform.exit();
     }
