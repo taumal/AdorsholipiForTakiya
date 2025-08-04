@@ -94,6 +94,12 @@ public class MainViewController {
     }
 
     @FXML
+    private void handleBanglaConsonantButtonAction(){}
+
+    @FXML
+    private void handleBanglaNumbersButtonAction(){}
+
+    @FXML
     private void handleExitButtonAction() {
         Platform.exit();
     }

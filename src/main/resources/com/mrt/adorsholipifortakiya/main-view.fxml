@@ -22,6 +22,12 @@
             <Button text="অ আ ই..." onAction="#handleBanglaVowelButtonAction"
                     prefWidth="200" prefHeight="80"
                     style="-fx-background-color: #6c36f4; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: hand;"/>
+            <Button text="ক খ গ..." onAction="#handleBanglaConsonantButtonAction"
+                    prefWidth="200" prefHeight="80"
+                    style="-fx-background-color: #f42d69; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: hand;"/>
+            <Button text="১ ২ ৩..." onAction="#handleBanglaNumbersButtonAction"
+                    prefWidth="200" prefHeight="80"
+                    style="-fx-background-color: #f68535; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: hand;"/>
             <Button text="Exit" onAction="#handleExitButtonAction"
                     prefWidth="200" prefHeight="80"
                     style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: hand;"/>
